@@ -10,12 +10,12 @@ accountList = open("C:\\Users\\jnguyen\\PycharmProjects\\directories\\accounts.t
 
 
 # pw generator
-def password():
-    chars = (string.digits * 7) + string.ascii_letters
-    password = ' '
-    for c in range(10):
-        password += random.choice(chars)
-    return password.strip()
+# def password():
+#    chars = (string.digits * 7) + string.ascii_letters
+#    password = ' '
+#    for c in range(10):
+#        password += random.choice(chars)
+#    return password.strip()
 
 
 # grabs all the accounts from the customer profile page and transfers it to a .txt file
@@ -77,7 +77,6 @@ def parseFunc():
     password += random.choice(numbers)
     for c in range(7):
         password += random.choice(chars)
-    print(password.strip())
 
     s = requests.Session()
     login = s.get('https://auth.ad.iq/login')
