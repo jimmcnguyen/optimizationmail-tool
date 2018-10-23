@@ -131,8 +131,8 @@ def parseFunc():
     editButton = browser.find_element_by_css_selector(
         '#directories-panel > form > div:nth-child(4) > div:nth-child(1) > div > a')
     editButton.click()
-    soup1 = BeautifulSoup(browser.page_source, 'lxml')
     time.sleep(1.5)
+    soup1 = BeautifulSoup(browser.page_source, 'lxml')
     emailField = browser.find_element_by_id('directory_account_email')
     pwField = browser.find_element_by_id('directory_account_password')
     saveButton = browser.find_element_by_css_selector('#edit_directory_account_32 > div > button')
