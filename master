@@ -159,7 +159,7 @@ def parseFunc():
     sheet.write(r, 4, accNumber)
     sheet.write(r, 5, email)
     sheet.write(r, 6, userName)
-    sheet.write(r, 7, password)
+    sheet.write(r, 7, password.strip())
     sheet.write(r, 8, enabled)
     wb.save('accounts.xls')
 
