@@ -9,13 +9,11 @@ from selenium.webdriver import Chrome
 accountList = open("C:\\Users\\jnguyen\\PycharmProjects\\directories\\accounts.txt")
 
 
-# pw generator
-# def password():
-#     chars = (string.digits * 7) + string.ascii_letters
-#     password = ' '
-#     for c in range(10):
-#         password += random.choice(chars)
-#     return password.strip()
+# deletes everything from .txt and .xls
+def clear():
+    open('accounts.txt', 'w').close()
+    print('.txt is cleared')
+    # print('.xls is cleared')
 
 
 # grabs all the accounts from the customer profile page and transfers it to a .txt file
@@ -40,7 +38,7 @@ def customerProfile():
         text_file = open('accounts.txt', 'a')
         text_file.write('https://cocreate.ad.iq' + link.get('href') + '\n')
     print('All accounts transferred to .txt')
-    print('Now extracting all information to excel...')
+    print('Now extracting all information to Excel...')
     text_file.close()
 
 
@@ -142,35 +140,39 @@ def parseFunc():
             pwField.send_keys(password.strip())
             saveButton.click()
             time.sleep(1.5)
+
+            # output to excel
+            # rb = xlrd.open_workbook('accounts.xls', formatting_info=True)
+            rb = xlrd.open_workbook('accounts.xls')
+            r_sheet = rb.sheet_by_index(0)
+            r = r_sheet.nrows
+            wb = copy(rb)
+            sheet = wb.get_sheet(0)
+            sheet.write(r, 0, customerSinceElem)
+            sheet.write(r, 1, item)
+            sheet.write(r, 2, companyName.strip())
+            sheet.write(r, 3, clientName)
+            sheet.write(r, 4, accNumber)
+            sheet.write(r, 5, email)
+            sheet.write(r, 6, userName)
+            sheet.write(r, 7, password.strip())
+            sheet.write(r, 8, enabled)
+            wb.save('accounts.xls')
+            print(item + ' written to spreadsheet')
+
         elif '@optimizationmail.com' in soup1.text:
+            print(item + ' already has an email and password')
             pass
     except:
         print('Error occurred for ' + item)
 
-    # output to excel
-    # rb = xlrd.open_workbook('accounts.xls', formatting_info=True)
-    rb = xlrd.open_workbook('accounts.xls')
-    r_sheet = rb.sheet_by_index(0)
-    r = r_sheet.nrows
-    wb = copy(rb)
-    sheet = wb.get_sheet(0)
-    sheet.write(r, 0, customerSinceElem)
-    sheet.write(r, 1, item)
-    sheet.write(r, 2, companyName.strip())
-    sheet.write(r, 3, clientName)
-    sheet.write(r, 4, accNumber)
-    sheet.write(r, 5, email)
-    sheet.write(r, 6, userName)
-    sheet.write(r, 7, password.strip())
-    sheet.write(r, 8, enabled)
-    wb.save('accounts.xls')
-
-    # exists chromedriver
+    # exits chromedriver
     browser.quit()
 
 
-customerProfile()
-for item in accountList:
-    parseFunc()
-print('Done')
-accountList.close()
+clear()
+# customerProfile()
+# for item in accountList:
+#     parseFunc()
+# print('Done')
+# accountList.close()
