@@ -45,25 +45,6 @@ def customerProfile():
 # parsing function
 def parseFunc():
 
-    # date function
-    # opts = Options()
-    # opts.set_headless()
-    # assert opts.headless
-    # browser = Chrome(options=opts)
-    # browser.get(item)
-    #
-    # emailElem = browser.find_element_by_id('admin_email')
-    # emailElem.send_keys('jimmyn@ad.iq')
-    # passwordElem = browser.find_element_by_id('admin_password')
-    # passwordElem.send_keys('Waterboy241!')
-    # passwordElem.submit()
-    # websiteButton = browser.find_element_by_css_selector('#account')
-    # websiteButton.click()
-    # print('')
-    # soup_level1 = BeautifulSoup(browser.page_source, 'lxml')
-    # customerSince = browser.find_element_by_css_selector('#account-panel > article > section:nth-child(1) > div:nth-child(2) > span.c-field__text')
-    # browser.quit()
-
     # password generator
     chars = string.digits + string.ascii_letters
     upper = string.ascii_uppercase
@@ -171,8 +152,8 @@ def parseFunc():
 
 
 clear()
- customerProfile()
- for item in accountList:
-     parseFunc()
- print('Done')
- accountList.close()
+customerProfile()
+for item in accountList:
+    parseFunc()
+print('Done')
+accountList.close()
