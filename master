@@ -146,6 +146,7 @@ def parseFunc():
             pass
     except:
         print('Error occurred for ' + item)
+        pass
 
     # exits chromedriver
     browser.quit()
